@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // const getSaludo = async () => {
+        //     const result = await fetch(new Request('http://127.0.0.1:3001/users', {
+        //         method: 'GET',
+        //     }));
+
+        //     const finalRes = await result.json()
+        //     console.log(finalRes, 'respuesta final')
+        // }
+
+        // getSaludo()
+
+        const getAllUsers = async () => {
+            const response = await fetch(new Request('http://127.0.0.1:3001/users/get-all-users', {
+                method: 'GET'
+            }))
+            const final = await response.json()
+            console.log(final, 'Response get')
+
+            final.data.forEach(element => {
+                document.querySelector('body').append(
+                    `<div>
+        <h1>${element.name}</h1>
+        <p>${element.edad}</p>
+        <small>${element.correo}</small>
+    </div>`
+                )
+
+            });
+
+        }
+
+        getAllUsers()
+    </script>
+</body>
+
+</html>
